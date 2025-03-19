@@ -9,68 +9,66 @@ document.addEventListener("DOMContentLoaded", () => {
   const keyword = urlParams.get("keyword");
 
   if (keyword) {
-      searchInput.value = keyword;
-      fetchEvents(keyword);
+    searchInput.value = keyword;
+    fetchEvents(keyword);
   } else {
-      // If no keyword, fetch all events
-      fetchAllEvents();
+    fetchAllEvents();
   }
 
-  // Handle new searches
   searchBtn.addEventListener("click", () => {
-      const newKeyword = searchInput.value.trim();
-      if (newKeyword) {
-          window.location.href = `events.html?keyword=${encodeURIComponent(newKeyword)}`;
-      }
+    const newKeyword = searchInput.value.trim();
+    if (newKeyword) {
+      window.location.href = `event.html?keyword=${encodeURIComponent(newKeyword)}`;
+    }
   });
 
   async function fetchEvents(keyword) {
-      const url = `${BASE_URL}?keyword=${encodeURIComponent(keyword)}&apikey=${API_KEY}`;
+    const url = `${BASE_URL}?keyword=${encodeURIComponent(keyword)}&countryCode=US&apikey=${API_KEY}`;
 
-      try {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error("Failed to fetch data");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch data");
 
-          const data = await response.json();
-          displayResults(data);
-      } catch (error) {
-          console.error("Error fetching data:", error);
-          resultsContainer.innerHTML = "<p>Error loading data. Try again.</p>";
-      }
+      const data = await response.json();
+      displayResults(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      resultsContainer.innerHTML = "<p>Error loading data. Try again.</p>";
+    }
   }
 
   async function fetchAllEvents() {
-      const url = `${BASE_URL}?apikey=${API_KEY}`;
+    const url = `${BASE_URL}?countryCode=US&apikey=${API_KEY}`;
 
-      try {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error("Failed to fetch data");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch data");
 
-          const data = await response.json();
-          displayResults(data);
-      } catch (error) {
-          console.error("Error fetching all events:", error);
-          resultsContainer.innerHTML = "<p>Error loading events. Try again later.</p>";
-      }
+      const data = await response.json();
+      displayResults(data);
+    } catch (error) {
+      console.error("Error fetching all events:", error);
+      resultsContainer.innerHTML = "<p>Error loading events. Try again later.</p>";
+    }
   }
 
   function displayResults(data) {
-      resultsContainer.innerHTML = ""; // Clear previous results
+    resultsContainer.innerHTML = "";
 
-      const events = data._embedded?.events || [];
-      if (events.length === 0) {
-          resultsContainer.innerHTML = "<p>No events found.</p>";
-          return;
-      }
+    const events = data._embedded?.events || [];
+    if (events.length === 0) {
+      resultsContainer.innerHTML = "<p>No events found.</p>";
+      return;
+    }
 
-      events.forEach(event => {
-          const { name, images, url, dates, _embedded } = event;
-          const eventDate = dates?.start?.localDate || "Date Not Available";
-          const venue = _embedded?.venues?.[0]?.name || "Venue Not Available";
+    events.forEach(event => {
+      const { name, images, url, dates, _embedded } = event;
+      const eventDate = dates?.start?.localDate || "Date Not Available";
+      const venue = _embedded?.venues?.[0]?.name || "Venue Not Available";
 
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
               <img src="${images ? images[0].url : 'placeholder.jpg'}" alt="${name}">
               <div class="card-content">
                   <h3>${name}</h3>
@@ -79,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
           `;
 
-          resultsContainer.appendChild(card);
-      });
+      resultsContainer.appendChild(card);
+    });
   }
 });

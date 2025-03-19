@@ -1,13 +1,7 @@
-/* ===========================
-   EVENTS PAGE STYLES
-   =========================== */
-
-/* Highlight the active navbar link */
 .navbar .router-link-exact-active {
-  color: #D44D5C; /* Make "Find Event" highlighted */
+  color: #D44D5C;
 }
 
-/* Search Section */
 .search-container {
   text-align: center;
   padding: 40px 0;
@@ -31,24 +25,11 @@
   outline: none;
 }
 
-/* #search-btn {
-  margin-left: 10px;
-  height: 50px;
-  width: 50px;
-  background: #D44D5C;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.3s;
-} */
 
 #search-btn:hover {
   background: #B83542;
 }
 
-/* Results Section */
 #event-results {
   text-align: center;
   padding: 40px 0;
@@ -62,7 +43,6 @@
   padding: 20px;
 }
 
-/* Event Cards */
 .card {
   width: 280px;
   background: white;
@@ -114,7 +94,6 @@
   background: #005bb5;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .results-container {
     flex-direction: column;
