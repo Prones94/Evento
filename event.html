@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Events - Evento</title>
+  <script src="https://kit.fontawesome.com/f281c76026.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="event.css">
+  <script defer src="event.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="flex flex-col">
+      <header class="navbar">
+        <div class="nav content-wrapper justify-between align-center">
+          <div class="logo">
+            <h2><a href="/">Evento</a></h2>
+          </div>
+          <div class="links align-center justify-between">
+            <a href="/" class="link">Home</a>
+            <a href="/events.html" class="link router-link-exact-active">Find Event</a>
+            <a href="#" class="btn-contact">Contact</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="search-container">
+        <div class="content-wrapper">
+          <div class="input-wrapper">
+            <input type="text" id="event-search" placeholder="Search for Event Here!">
+            <button id="search-btn" class="not-loading">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="event-results">
+        <h2>All Events</h2>
+        <div class="content-wrapper">
+          <div id="results" class="results-container">
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
