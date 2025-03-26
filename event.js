@@ -4,9 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultsContainer = document.getElementById("results");
   const searchInput = document.getElementById("event-search");
   const searchBtn = document.getElementById("search-btn");
+  const menuToggle = document.getElementById("menu-toggle")
+  const navLinks = document.getElementById("nav-links")
 
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show")
+    })
+  }
 
   if (keyword) {
     searchInput.value = keyword;
